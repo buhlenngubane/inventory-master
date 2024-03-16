@@ -98,12 +98,12 @@ if not TESTING_MODE:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            "URL":  "postgresql://postgres:LrSIJlxCcCWedLsleHBsJnKZFixtkfSu@viaduct.proxy.rlwy.net:28929/railway"
+            "URL":  "postgresql://postgres:oxrWmfeAFXXJguEpkSVDBeLqJICXzotg@roundhouse.proxy.rlwy.net:38768/railway",
             'NAME': 'railway',
             'USER': 'postgres',
-            'PASSWORD': 'LrSIJlxCcCWedLsleHBsJnKZFixtkfSu',
-            'HOST': 'viaduct.proxy.rlwy.net',
-            'PORT': '28929',
+            'PASSWORD': 'oxrWmfeAFXXJguEpkSVDBeLqJICXzotg',
+            'HOST': 'roundhouse.proxy.rlwy.net',
+            'PORT': '38768',
         }
     }
 else:
