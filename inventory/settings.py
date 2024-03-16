@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import dj_database_url
 import django_heroku
 import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -96,15 +97,8 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 TESTING_MODE = False
 if not TESTING_MODE:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            "URL":  "postgresql://postgres:oxrWmfeAFXXJguEpkSVDBeLqJICXzotg@roundhouse.proxy.rlwy.net:38768/railway",
-            'NAME': 'railway',
-            'USER': 'postgres',
-            'PASSWORD': 'oxrWmfeAFXXJguEpkSVDBeLqJICXzotg',
-            'HOST': 'roundhouse.proxy.rlwy.net',
-            'PORT': '38768',
-        }
+        'default': 
+            dj_database_url.parse("postgres://postdatabase_ooco_user:lhlMYvWz4Py1fihDLiAORDeyICjOx3Dm@dpg-cnqv5gmd3nmc7396080g-a.ohio-postgres.render.com/postdatabase_ooco")
     }
 else:
     DATABASES = {
