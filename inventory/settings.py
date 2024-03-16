@@ -28,10 +28,7 @@ SECRET_KEY = 'k6^1e5e0k5!x!-&ge4e3gzp5wf3exu7zeydx83@5087w73mzjr'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '192.168.43.89',
-    "inventory-master"
+    '*'
 ]
 SITE_ID = 1
 
