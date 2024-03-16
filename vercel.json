@@ -10,6 +10,5 @@
         "src": "/(.*)",
         "dest": "inventory/wsgi.py"
       }
-    ],
-    "rewrites": [{ "source": "/(.*)", "destination": "templates/base.html" }]
+    ]
 }
