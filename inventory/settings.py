@@ -98,11 +98,12 @@ if not TESTING_MODE:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'Inventory',
+            "URL":  "postgresql://postgres:LrSIJlxCcCWedLsleHBsJnKZFixtkfSu@viaduct.proxy.rlwy.net:28929/railway"
+            'NAME': 'railway',
             'USER': 'postgres',
-            'PASSWORD': '1234',
-            'HOST': '',
-            'PORT': '5432',
+            'PASSWORD': 'LrSIJlxCcCWedLsleHBsJnKZFixtkfSu',
+            'HOST': 'viaduct.proxy.rlwy.net',
+            'PORT': '28929',
         }
     }
 else:
