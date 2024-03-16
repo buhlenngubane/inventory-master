@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '192.168.43.89',
+    "inventory-master"
 ]
 SITE_ID = 1
 
