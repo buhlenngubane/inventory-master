@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import dj_database_url
 import django_heroku
 import os
+from dotenv import load_dotenv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,8 +22,10 @@ EMAIL_FILE_PATH = BASE_DIR+ "/"+ "sent_emails"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
+load_dotenv()
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k6^1e5e0k5!x!-&ge4e3gzp5wf3exu7zeydx83@5087w73mzjr'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -96,7 +99,7 @@ TESTING_MODE = False
 if not TESTING_MODE:
     DATABASES = {
         'default': 
-            dj_database_url.parse("postgres://postdatabase_ooco_user:lhlMYvWz4Py1fihDLiAORDeyICjOx3Dm@dpg-cnqv5gmd3nmc7396080g-a.ohio-postgres.render.com/postdatabase_ooco")
+            dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
 else:
     DATABASES = {
