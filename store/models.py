@@ -8,7 +8,7 @@ from accounts.models import Employee
 class Store(models.Model):
     name = models.CharField(max_length=30, unique=True,verbose_name="Site name")
     #capacity = models.IntegerField(default=0, verbose_name="Number of items")
-    #number_of_items = models.IntegerField(default=0)
+    number_of_items = models.IntegerField(default=0)
     manager = models.ForeignKey(
         Employee, on_delete=models.CASCADE, related_name="Manager")
     store_id = models.CharField(max_length=10,

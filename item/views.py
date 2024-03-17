@@ -43,10 +43,11 @@ class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
     success_url = reverse_lazy('item:index')
 
     def form_valid(self, form):
-        print(form.instance.item_s)
+        print(form.instance.item_site)
         form.instance.added_by = self.request.user
         store = Store.objects.get(
             name=form.instance.item_site).number_of_items
+
         Store.objects.filter(name=form.instance.item_site).update(number_of_items=store +
                                                                    form.instance.item_num)
         return super().form_valid(form)
@@ -66,6 +67,7 @@ class ListAndDetail(LoginRequiredMixin, DetailView):
         employee = Employee.objects.get(username=self.request.user.username)
         context = super(ListAndDetail, self).get_context_data(**kwargs)
         context["object_list"] = self.model.objects.filter(added_by=employee)
+        #print(context["object_list"].values_list())
         return context
 
 
