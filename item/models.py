@@ -15,12 +15,8 @@ class Item(models.Model):
         ("t", "Tonnes"),
     ]
     ITEM_CLASSES = [
-        ("A", "Electronics"),
-        ("B", "Chemicals"),
-        ("C", "Books"),
-        ("D", "Clothing"),
-        ("E", "Food"),
-        ("F", "Other"),
+        ("A", "Scaffolding"),
+        ("B", "Boards"),
     ]
     item_site = models.ForeignKey(Store, on_delete=models.CASCADE)
     added_by = models.ForeignKey(Employee, on_delete=models.CASCADE)

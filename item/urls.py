@@ -7,5 +7,6 @@ urlpatterns = [
     path('create/', views.ListAndCreate.as_view(), name='create'),
     path('delete-item/<pk>', views.ItemDeleteView.as_view(), name='delete'),
     path('item/<pk>', views.ListAndDetail.as_view(), name='details'),
-    path('search/?query=', views.ItemSearchView.as_view(), name='search')
+    path('search/?query=', views.ItemSearchView.as_view(), name='search'),
+    
 ]

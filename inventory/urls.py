@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from inventory import core_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('item.urls')),
     path("accounts/", include("accounts.urls")),  # new
     path("accounts/", include("django.contrib.auth.urls")),
-    path('site/', include('store.urls'))
+    path('site/', include('store.urls')),
+    path("favicon.ico", core_view.favicon),
 ]
