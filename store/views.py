@@ -45,7 +45,6 @@ class StoreCreateView(LoginRequiredMixin, CreateView):
         context = super(StoreCreateView, self).get_context_data(**kwargs)
         context["object_list"] = self.model.objects.filter(
             site_users=employee)
-        print(context["object_list"])
         return context
 
 class StoreDetailView(LoginRequiredMixin, DetailView):
