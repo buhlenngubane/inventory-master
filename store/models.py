@@ -13,7 +13,7 @@ class Store(models.Model):
         Employee, on_delete=models.CASCADE, related_name="Manager")
     store_id = models.CharField(max_length=10,
                                 primary_key=True, null=False)
-    store_users = models.ManyToManyField(Employee)
+    site_users = models.ManyToManyField(Employee)
 
     def __str__(self):
         return self.name

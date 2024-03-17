@@ -22,7 +22,7 @@
         <dd class="col-sm-8">
             <ul>
 
-                {% for user in store.store_users.values_list.values %}
+                {% for user in store.site_users.values_list.values %}
                 <li>{{user.first_name}} {{user.last_name}} <a
                         href="{%url 'accounts:profile' pk=user.id%}">@{{user.username}}</a></li>
                 {% endfor %}

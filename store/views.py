@@ -15,12 +15,24 @@ from django import template
 
 register = template.Library()
 
+# @register.filter
+# def replace(value, arg):
+#     """
+#     Replacing filter
+#     Use `{{ "aaa"|replace:"a|b" }}`
+#     """
+#     if len(arg.split('|')) != 2:
+#         return value
+
+#     what, to = arg.split('|')
+#     return value.replace(what, to)
+
 # Create your views here.
 
 
 class StoreCreateView(LoginRequiredMixin, CreateView):
     model = Store
-    fields = ['name', 'store_users']
+    fields = ['name', 'site_users']
     template_name = "store/create.html"
     success_url = reverse_lazy('store:create')
 
@@ -32,21 +44,9 @@ class StoreCreateView(LoginRequiredMixin, CreateView):
         employee = Employee.objects.get(username=self.request.user.username)
         context = super(StoreCreateView, self).get_context_data(**kwargs)
         context["object_list"] = self.model.objects.filter(
-            store_users=employee)
+            site_users=employee)
+        print(context["object_list"])
         return context
-
-    @register.filter
-    def replace(value, arg):
-        """
-        Replacing filter
-        Use `{{ "aaa"|replace:"a|b" }}`
-        """
-        if len(arg.split('|')) != 2:
-            return value
-
-        what, to = arg.split('|')
-        return value.replace(what, to)
-
 
 class StoreDetailView(LoginRequiredMixin, DetailView):
     model = Store
@@ -56,7 +56,7 @@ class StoreDetailView(LoginRequiredMixin, DetailView):
         employee = Employee.objects.get(username=self.request.user.username)
         context = super(StoreDetailView, self).get_context_data(**kwargs)
         context["object_list"] = self.model.objects.filter(
-            store_users=employee)
+            site_users=employee)
         return context
 
 
