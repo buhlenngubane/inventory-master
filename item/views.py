@@ -37,17 +37,17 @@ class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
         "weight",
         'units',
         "item_class",
-        'item_store',
+        'item_site',
     ]
     template_name = "item/create.html"
     success_url = reverse_lazy('item:index')
 
     def form_valid(self, form):
-        print(form.instance.item_store)
+        print(form.instance.item_s)
         form.instance.added_by = self.request.user
         store = Store.objects.get(
-            name=form.instance.item_store).number_of_items
-        Store.objects.filter(name=form.instance.item_store).update(number_of_items=store +
+            name=form.instance.item_site).number_of_items
+        Store.objects.filter(name=form.instance.item_site).update(number_of_items=store +
                                                                    form.instance.item_num)
         return super().form_valid(form)
 

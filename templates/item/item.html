@@ -25,16 +25,16 @@
         </dt>
         <dt class="col-sm-4">Site name:
         <dd class="col-sm-8">
-            {{item.item_store}}
-            <a class="item" href="{%url 'store:details' pk=item.item_store.store_id%}">
-                @{{item.item_store.store_id}}
+            {{item.item_site}}
+            <a class="item" href="{%url 'store:details' pk=item.item_s.store_id%}">
+                @{{item.item_site.store_id}}
             </a>
         </dd>
         </dt>
         <dt class="col-sm-4">Added by:
             <dd class="col-sm-8">
                 {{item.added_by.first_name}} {{item.added_by.last_name}} 
-                <a class="item" href="{%url 'store:details' pk=item.item_store.store_id%}">
+                <a class="item" href="{%url 'store:details' pk=item.item_site.store_id%}">
                     @{{item.added_by.username}}
                 </a>
             </dd>

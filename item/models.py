@@ -22,7 +22,7 @@ class Item(models.Model):
         ("E", "Food"),
         ("F", "Other"),
     ]
-    item_store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    item_site = models.ForeignKey(Store, on_delete=models.CASCADE)
     added_by = models.ForeignKey(Employee, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name="Item name")
     item_num = models.IntegerField(verbose_name="No. of units")
