@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="{%url 'item:index'%}">PROSTAR</a>
+    <a class="navbar-brand" href="{%url 'item:index'%}"><img src="/static/img/ProstarIcon.jpeg" alt="PROSTAR" width="100" height="20%"></a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
         aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
                     <span class="fa fa-user" aria-hidden="true"></span>
                     {{user.first_name}}
                 </a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="dropdownId">
+                <div class="dropdown-menu" aria-labelledby="dropdownId" style="background-color: #fdf9e3;">
                     <a href="{%url 'accounts:profile' pk=user.id %}" class="dropdown-item">
                         Profile
                     </a>

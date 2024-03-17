@@ -25,8 +25,8 @@ EMAIL_FILE_PATH = BASE_DIR+ "/"+ "sent_emails"
 load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k6^1e5e0k5!x!-&ge4e3gzp5wf3exu7zeydx83@5087w73mzjr'
-#SECRET_KEY = os.getenv('SECRET_KEY')
+#SECRET_KEY = 'k6^1e5e0k5!x!-&ge4e3gzp5wf3exu7zeydx83@5087w73mzjr'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -92,7 +92,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'inventory.wsgi.application'
-DATABASE_URL = 'postgres://postdatabase_ooco_user:lhlMYvWz4Py1fihDLiAORDeyICjOx3Dm@dpg-cnqv5gmd3nmc7396080g-a.ohio-postgres.render.com/postdatabase_ooco'
+#DATABASE_URL = 'postgres://postdatabase_ooco_user:lhlMYvWz4Py1fihDLiAORDeyICjOx3Dm@dpg-cnqv5gmd3nmc7396080g-a.ohio-postgres.render.com/postdatabase_ooco'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -100,7 +100,7 @@ TESTING_MODE = False
 if not TESTING_MODE:
     DATABASES = {
         'default': 
-            dj_database_url.parse(DATABASE_URL)#os.getenv('DATABASE_URL'))
+            dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
 else:
     DATABASES = {

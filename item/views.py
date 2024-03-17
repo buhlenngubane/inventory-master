@@ -31,6 +31,7 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
 class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
     model = Item
     fields = [
+        "item_id",
         "name",
         "item_num",
         "fragile",
@@ -41,6 +42,7 @@ class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
     ]
     template_name = "item/create.html"
     success_url = reverse_lazy('item:index')
+    
 
     def form_valid(self, form):
         print(form.instance.item_site)
@@ -65,9 +67,20 @@ class ListAndDetail(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         employee = Employee.objects.get(username=self.request.user.username)
+        # site = Store.objects.get(name=)
         context = super(ListAndDetail, self).get_context_data(**kwargs)
         context["object_list"] = self.model.objects.filter(added_by=employee)
-        #print(context["object_list"].values_list())
+        # total = dict()
+        # for key,item in context["object_list"]:
+        #     if item[2] in total:
+        #         total[item[2]]+=item[3]
+        #     else:
+        #         total[item[2]] = item[3]
+        #         item.append(total[item[2]])
+        # context["object_list"].aaggregate()
+
+
+        print(context["object_list"].values_list())
         return context
 
 
@@ -80,5 +93,6 @@ class ItemSearchView(LoginRequiredMixin, ListView):
         employee = Employee.objects.get(username=self.request.user.username)
         context = super(ItemSearchView, self).get_context_data(**kwargs)
         context["object_list"] = self.model.objects.filter(
-            Q(added_by=employee) & (Q(name__icontains=query) | Q(item_id__icontains=query)))
+            #Q(added_by=employee) & 
+            (Q(name__icontains=query) | Q(item_id__icontains=query)))
         return context

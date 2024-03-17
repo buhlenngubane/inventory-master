@@ -54,8 +54,8 @@ class StoreDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         employee = Employee.objects.get(username=self.request.user.username)
         context = super(StoreDetailView, self).get_context_data(**kwargs)
-        context["object_list"] = self.model.objects#.filter(
-            #site_users=employee)
+        context["object_list"] = self.model.objects.filter(
+            site_users=employee)
         return context
 
 

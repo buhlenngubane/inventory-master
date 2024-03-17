@@ -31,6 +31,14 @@
             </a>
         </dd>
         </dt>
+        <dt class="col-sm-4">Items in site:
+            <dd class="col-sm-8">
+                {{item.item_site.number_of_items}}
+                <a class="item" href="{%url 'store:details' pk=item.item_site.store_id%}">
+                    @{{item.item_site.store_id}}
+                </a>
+            </dd>
+            </dt>
         <dt class="col-sm-4">Added by:
             <dd class="col-sm-8">
                 {{item.added_by.first_name}} {{item.added_by.last_name}} 
