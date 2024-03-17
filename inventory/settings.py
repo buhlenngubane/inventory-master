@@ -96,7 +96,6 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 TESTING_MODE = False
 if not TESTING_MODE:
     DATABASES = {
