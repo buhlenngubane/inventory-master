@@ -10,8 +10,10 @@
             <tr>
                 <th>Material ID</th>
                 <th>Material</th>
-                <th>Units in site</th>
+                
                 <th>Item class</th>
+                <th>Item site</th>
+                <th>Units in site</th>
             </tr>
         </thead>
         <tbody>
@@ -23,11 +25,22 @@
                     </a>
                 </td>
                 <td>{{item.name}}</td>
-                <td>{{item.item_num}}</td>
+                
                 <td>{{item.get_item_class_display}}</td>
+                <td>{{item.item_site}}</td>
+                <td>{{item.item_num}}</td>
             </tr>
             {% endfor %}
 
         </tbody>
+        <tfoot>
+            <tr>
+              <td>Sum</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{{Total}}</td>
+            </tr>
+          </tfoot>
     </table>
 </div>

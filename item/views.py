@@ -23,9 +23,18 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('item:index')
 
 
-class ItemDeleteView(LoginRequiredMixin, DeleteView):
+class ItemDeleteView(LoginRequiredMixin,AjaxableFormMixin, DeleteView):
     model = Item
     success_url = reverse_lazy('item:index')
+
+    def form_valid(self, form):
+        # print(self.model.objects.values())
+        site = self.object.item_site
+        store = Store.objects.get(
+                name=site.name).number_of_items
+        Store.objects.filter(name=site.name).update(number_of_items=store -
+                                                                   self.object.item_num)
+        return super().form_valid(form)
 
 
 class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
@@ -70,17 +79,8 @@ class ListAndDetail(LoginRequiredMixin, DetailView):
         # site = Store.objects.get(name=)
         context = super(ListAndDetail, self).get_context_data(**kwargs)
         context["object_list"] = self.model.objects.filter(added_by=employee)
-        # total = dict()
-        # for key,item in context["object_list"]:
-        #     if item[2] in total:
-        #         total[item[2]]+=item[3]
-        #     else:
-        #         total[item[2]] = item[3]
-        #         item.append(total[item[2]])
-        # context["object_list"].aaggregate()
+        
 
-
-        print(context["object_list"].values_list())
         return context
 
 
