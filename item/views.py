@@ -67,6 +67,9 @@ class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
         employee = Employee.objects.get(username=self.request.user.username)
         context = super(ListAndCreate, self).get_context_data(**kwargs)
         context["object_list"] = self.model.objects.filter(added_by=employee)
+        context['Total'] = 0
+        for item in context["object_list"]:
+            context['Total'] += item.item_num
         return context
 
 
