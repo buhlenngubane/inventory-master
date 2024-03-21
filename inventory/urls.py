@@ -18,6 +18,9 @@ from django.urls import path, include
 
 from inventory import core_view
 
+handler404 = 'inventory.core_view.handler404'
+handler500 = 'inventory.core_view.handler500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('item.urls')),
