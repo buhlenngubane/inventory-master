@@ -27,5 +27,5 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),  # new
     path("accounts/", include("django.contrib.auth.urls")),
     path('site/', include('store.urls')),
-    path("favicon.ico", core_view.favicon),
+    # path("favicon.ico", core_view.favicon),
 ]

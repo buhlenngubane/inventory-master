@@ -28,7 +28,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '*'
@@ -169,10 +169,10 @@ TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
 #     'SPARKPOST_API_KEY': '',
 #     'SPARKPOST_API_URL': '',
 # }
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_POST = 587
 # EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = os.environ.get('traces_email')
-# EMAIL_HOST_PASSWORD = os.environ.get('traces_email_password')
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''#os.environ.get('traces_email_password')
