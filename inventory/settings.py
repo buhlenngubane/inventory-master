@@ -28,10 +28,15 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True if os.getenv('DEBUG') == "1" else False
+
+# LOGIN_URL = 'login'
+print(DEBUG)
+print(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = [
-    '*'
+    # '*'
+    '127.0.0.1'
 ]
 SITE_ID = 1
 
@@ -49,7 +54,7 @@ INSTALLED_APPS = [
 
     'item',
     'store',
-
+    # 'django_google_fonts',
     'widget_tweaks',
 
     #'stock_control.apps.StockControlConfig',
@@ -58,9 +63,10 @@ INSTALLED_APPS = [
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'accounts.Employee'
+# GOOGLE_FONTS = ["Kablammo", "Roboto:300"]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    # 'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -90,12 +96,14 @@ TEMPLATES = [
     },
 ]
 
+# LOGIN_URL = 'login'
+
 WSGI_APPLICATION = 'inventory.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-TESTING_MODE = False
-if not TESTING_MODE:
+# TESTING_MODE = DEBUG
+if not DEBUG:
     DATABASES = {
         'default': 
             dj_database_url.parse(os.getenv('DATABASE_URL'))
@@ -169,8 +177,8 @@ TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
 #     'SPARKPOST_API_KEY': '',
 #     'SPARKPOST_API_URL': '',
 # }
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_POST = 587
 # EMAIL_USE_TLS = True
