@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-
-from inventory import core_view
+from django.urls import path, include, re_path
+from django.views.static import serve
+from inventory import core_view, settings
 
 handler404 = 'inventory.core_view.handler404'
 handler500 = 'inventory.core_view.handler500'
@@ -27,5 +27,7 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),  # new
     path("accounts/", include("django.contrib.auth.urls")),
     path('site/', include('store.urls')),
-    # path("favicon.ico", core_view.favicon),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+
+    path("favicon.ico", core_view.favicon),
 ]

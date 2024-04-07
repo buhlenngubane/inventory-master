@@ -17,8 +17,8 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR+ "/"+ "sent_emails"
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = BASE_DIR+ "/"+ "sent_emails"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -29,20 +29,22 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.getenv('DEBUG') == "1" else False
+DEBUG404 = not DEBUG
 
 # LOGIN_URL = 'login'
 print(DEBUG)
 print(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = [
-    # '*'
-    '127.0.0.1'
+    '*'
+    # '127.0.0.1'
 ]
 SITE_ID = 1
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -51,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-
+    'corsheaders',
     'item',
     'store',
     # 'django_google_fonts',
@@ -66,10 +68,12 @@ AUTH_USER_MODEL = 'accounts.Employee'
 # GOOGLE_FONTS = ["Kablammo", "Roboto:300"]
 
 MIDDLEWARE = [
-    # 'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -78,6 +82,19 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'inventory.urls'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS=True
+CORS_ORIGIN_WHITELIST = (
+   "https://localhost:8000",
+   )
+# CORS_ALLOWED_ORIGINS = [
+#     "https://localhost:8000",
+#     "https://127.0.0.1:8000",
+# ]
+# CSRF_TRUSTED_ORIGINS = [
+#     # "https://localhost:8000",
+#     "https://127.0.0.1:8000",
+# ]
 
 
 TEMPLATES = [
@@ -156,7 +173,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -166,13 +184,63 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = 'item:index'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#COMPRESS_STORAGE = 'compressor.storage.BrotliCompressorFileStorage'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    # 'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'django.server': {
+            '()': 'django.utils.log.ServerFormatter',
+            'format': '[{server_time}] {message}',
+            'style': '{',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            #'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+        'django.server': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'django.server',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            #'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'INFO',
+        },
+        'django.server': {
+            'handlers': ['django.server'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    }
+}
 
 
 LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
-TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
+# TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
 # # # Email services
 # EMAIL_BACKEND = "anymail.backends.sparkpost.EmailBackend"
 # DEFAULT_FROM_EMAIL = ''
