@@ -4,6 +4,8 @@ charset-normalizer==3.3.2
 dj-database-url==2.1.0
 Django==4.2.11
 django-blog==0.1.1
+django-cors-headers==4.3.1
+django-google-fonts==0.0.3
 django-heroku==0.3.1
 django-widget-tweaks==1.5.0
 gunicorn==21.2.0
@@ -14,8 +16,10 @@ psycopg2-binary==2.9.9
 python-dotenv==1.0.1
 requests==2.31.0
 sqlparse==0.4.4
+tinycss2==1.2.1
 typing_extensions==4.10.0
 tzdata==2024.1
 urllib3==2.2.1
 vercel==0.2.1
+webencodings==0.5.1
 whitenoise==6.6.0
