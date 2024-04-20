@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'store',
     # 'django_google_fonts',
     'widget_tweaks',
-
     #'stock_control.apps.StockControlConfig',
     #'accounts.apps.AccountsConfig',
     # 'email_service.apps.EmailServiceConfig',
@@ -78,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware'
 ]
 
 ROOT_URLCONF = 'inventory.urls'

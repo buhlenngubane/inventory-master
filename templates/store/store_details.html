@@ -5,7 +5,9 @@
     <dl class="row">
         <dt class="col-sm-4">Name:
         <dd class="col-sm-8">
-            {{store.name}}
+            
+                {{store.name}}
+            
         </dd>
         </dt>
         <!-- <dt class="col-sm-4">Capacity:
@@ -44,6 +46,14 @@
                 New site
             </button>
         </a>
+        <div>
+            <a href="{%url 'store:update' pk=store.store_id%}">
+                <button type="submit" class="btn btn-warning">
+                    <span class="fa fa-eraser" aria-hidden="true"></span>
+                    Update site
+                </button>
+            </a>
+        </div>
         <div>
             <form id="item-delete" method="POST" action="{%url 'store:delete' pk=store.store_id%}">
                 {% csrf_token %}

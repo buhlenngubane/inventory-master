@@ -1,3 +1,10 @@
+<style>
+.notification{
+    position: absolute;
+    top: 5rem;
+    right: 1rem;
+}
+</style>
 <script>
     $(document).ready(function () {
         $('#items-table').DataTable();
@@ -26,3 +33,11 @@
         {% endfor %}
     </tbody>
 </table>
+<ul class="messages" id="messages" hx-swap-oob="true">
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+                alert('{{message}}')
+        </script>
+        {% endfor %}
+    {% endif %}</ul>

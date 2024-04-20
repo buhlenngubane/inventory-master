@@ -12,6 +12,10 @@ urlpatterns = [
         views.StoreCreateView.as_view(),
         name='create'),
     path(
+        '<pk>/update',
+        views.StoreUpdateView.as_view(),
+        name='update'),
+    path(
         '<pk>/details/',
         views.StoreDetailView.as_view(),
         name='details'),
