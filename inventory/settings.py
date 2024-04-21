@@ -80,6 +80,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware'
 ]
 
+STATICFILES_FINDERS = (
+  'django.contrib.staticfiles.finders.FileSystemFinder',
+  'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
 ROOT_URLCONF = 'inventory.urls'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 CORS_ORIGIN_ALLOW_ALL = True

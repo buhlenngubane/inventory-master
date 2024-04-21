@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.static import serve
 from inventory import core_view, settings
+from django.conf.urls.static import static
 
 handler404 = 'inventory.core_view.handler404'
 handler500 = 'inventory.core_view.handler500'
@@ -30,4 +31,4 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 
     path("favicon.ico", core_view.favicon),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
