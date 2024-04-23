@@ -37,7 +37,7 @@ class ItemDeleteView(LoginRequiredMixin,AjaxableFormMixin, DeleteView):
         Store.objects.filter(name=site.name).update(number_of_items=store -
                                                                    self.object.item_num)
         Store.objects.filter(name="Yard").update(number_of_items=yard_items +
-                                                                   form.instance.item_num)
+                                                                   self.object.item_num)
         return super().form_valid(form)
 
 
