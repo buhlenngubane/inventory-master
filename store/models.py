@@ -2,11 +2,12 @@ from django.db import models
 from django.db.models.signals import pre_save
 from .utils import unique_store_id_generator
 from accounts.models import Employee
+from .fields import UpperCharField
 # Create your models here.
 
 
 class Store(models.Model):
-    name = models.CharField(max_length=30, unique=True,verbose_name="Site name")
+    name = UpperCharField(max_length=30, unique=True,verbose_name="Site name")
     #capacity = models.IntegerField(default=0, verbose_name="Number of items")
     number_of_items = models.IntegerField(default=0)
     manager = models.ForeignKey(

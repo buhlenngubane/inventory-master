@@ -33,10 +33,10 @@ class ItemDeleteView(LoginRequiredMixin,AjaxableFormMixin, DeleteView):
         store = Store.objects.get(
                 name=site.name).number_of_items
         yard_items = Store.objects.get(
-            name="Yard").number_of_items
+            name="YARD").number_of_items
         Store.objects.filter(name=site.name).update(number_of_items=store -
                                                                    self.object.item_num)
-        Store.objects.filter(name="Yard").update(number_of_items=yard_items +
+        Store.objects.filter(name="YARD").update(number_of_items=yard_items +
                                                                    self.object.item_num)
         return super().form_valid(form)
 
@@ -59,18 +59,18 @@ class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
 
     def form_valid(self, form):
         print(form.instance.item_site)
-        if form.instance.item_site.name == "Yard":
+        if form.instance.item_site.name == "YARD":
             print("Trying to add to yard")
             return super().get_permission_denied_message()
         form.instance.added_by = self.request.user
         store = Store.objects.get(
             name=form.instance.item_site).number_of_items
         yard_items = Store.objects.get(
-            name="Yard").number_of_items
+            name="YARD").number_of_items
 
         Store.objects.filter(name=form.instance.item_site).update(number_of_items=store +
                                                                    form.instance.item_num)
-        Store.objects.filter(name="Yard").update(number_of_items=yard_items -
+        Store.objects.filter(name="YARD").update(number_of_items=yard_items -
                                                                    form.instance.item_num)
         return super().form_valid(form)
 
