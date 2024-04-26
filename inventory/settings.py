@@ -87,11 +87,21 @@ STATICFILES_FINDERS = (
 
 ROOT_URLCONF = 'inventory.urls'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS=True
 CORS_ORIGIN_WHITELIST = (
    "https://localhost:8000",
    )
+
+CACHES = {
+	'default': {
+		'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+		'LOCATION': '127.0.0.1:11211',
+	}
+}
+SESSION_COOKIE_AGE = 1800  # 30 minutes
+
 # CORS_ALLOWED_ORIGINS = [
 #     "https://localhost:8000",
 #     "https://127.0.0.1:8000",
