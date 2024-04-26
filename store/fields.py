@@ -1,5 +1,4 @@
 from django.db import models
-from six import with_metaclass
 
 # Custom lowecase CharField
 
