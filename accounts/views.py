@@ -41,6 +41,7 @@ class UserResetPasswordDoneView(PasswordResetDoneView):
 class UserResetPasswordConfirmView(PasswordResetConfirmView):
     model = Employee
     template_name = 'accounts/password_reset_confirm.html'
+    success_url=reverse_lazy('accounts:password_reset_complete')
 
 class UserResetPasswordCompleteView(PasswordResetCompleteView):
     model = Employee
