@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'django_password_eye',
     'corsheaders',
     'item',
     'store',
@@ -101,6 +102,7 @@ CACHES = {
 	}
 }
 SESSION_COOKIE_AGE = 1800  # 30 minutes
+DJANGO_PASSWORD_EYE_INCLUDE_FONT_AWESOME = False
 
 # CORS_ALLOWED_ORIGINS = [
 #     "https://localhost:8000",
@@ -249,7 +251,7 @@ LOGGING = {
         },
     }
 }
-
+# SITE_ID = 1
 
 LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL
 
@@ -264,10 +266,14 @@ django_heroku.settings(locals())
 #     'SPARKPOST_API_KEY': '',
 #     'SPARKPOST_API_URL': '',
 # }
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_POST = 587
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = ''
 # EMAIL_HOST_PASSWORD = ''#os.environ.get('traces_email_password')
+EMAIL_HOST = "app.debugmail.io"
+EMAIL_HOST_USER = "cfb1cffc-105f-4c09-8d4b-076c6c9c703c"
+EMAIL_HOST_PASSWORD = "3903210e-6a21-466c-834a-5a1497f969e6"
+EMAIL_PORT = "25"

@@ -1,3 +1,4 @@
+from item.forms import ItemForm
 from mixins import AjaxableFormMixin
 from django.template import RequestContext
 from django.views.generic import (
@@ -10,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.urls import reverse_lazy
 from django.db.models import Q
-
+from django.contrib import messages
 from .models import Item
 from accounts.models import Employee
 from store.models import Store
@@ -42,8 +43,9 @@ class ItemDeleteView(LoginRequiredMixin,AjaxableFormMixin, DeleteView):
 
 
 class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
+    form_class=ItemForm
     model = Item
-    fields = [
+    '''fields = [
         "item_id",
         "name",
         "item_num",
@@ -52,15 +54,22 @@ class ListAndCreate(LoginRequiredMixin, AjaxableFormMixin, CreateView):
         'units',
         "item_class",
         'item_site',
-    ]
+    ]'''
     template_name = "item/create.html"
     success_url = reverse_lazy('item:index')
     
+    def form_invalid(self, form):
+        print("Form invalid")
+        messages.error(self.request,"You cannot edit YARD")
+        #reverse_lazy('item:index')
+        #self.get_form(form).fields.clear()
+        return super().form_invalid(form)
 
     def form_valid(self, form):
         print(form.instance.item_site)
         if form.instance.item_site.name == "YARD":
             print("Trying to add to yard")
+           # messages.error(self.request,"You cannot edit YARD")
             return super().get_permission_denied_message()
         form.instance.added_by = self.request.user
         store = Store.objects.get(
