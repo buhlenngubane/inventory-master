@@ -20,7 +20,7 @@ psycopg2==2.9.9
 psycopg2-binary==2.9.9
 py-vapid==1.9.0
 pycparser==2.22
-pyOpenSSL==24.1.0
+pyOpenSSL==22.1.0
 python-dotenv==1.0.1
 python-memcached==1.62
 pywebpush==1.9.4
