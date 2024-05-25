@@ -1,0 +1,7 @@
+{% extends "./index.html" %}
+{% block sidebar %}
+<div>
+    <h1>{{ object.name }}</h1>
+    {% include_container chartcontainer 400 600 %}
+</div>
+{% endblock sidebar %}  

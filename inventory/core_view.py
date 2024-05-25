@@ -18,5 +18,5 @@ def handler500(request, *args, **argv):
 @require_GET
 @cache_control(max_age=60 * 60 * 24, immutable=True, public=True)  # one day
 def favicon(request: HttpRequest) -> HttpResponse:
-    file = (settings.BASE_DIR +"/static/img/favicon.ico").open("rb")
+    file = open(settings.BASE_DIR +"/static/img/favicon.ico","rb")
     return FileResponse(file)

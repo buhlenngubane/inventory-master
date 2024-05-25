@@ -23,4 +23,8 @@ urlpatterns = [
         '<pk>/delete/',
         views.StoreDeleteView.as_view(),
         name='delete'),
+    path(
+        '<pk>/piechart/',
+        views.StoreListView.demo_piechart,
+        name='chart'),
 ]

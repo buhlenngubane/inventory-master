@@ -18,6 +18,7 @@
         <tr>
             <th>Site ID</th>
             <th>Site name</th>
+            <th>Chart</th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,12 @@
                 </a>
             </td>
             <td>{{store.name}}</td>
+            <td>
+                <a class="btn btn-primary" href="{%url 'store:chart' pk=store.store_id%}">
+                        <span class="fa fa-plus" aria-hidden="true"></span>
+                        Display Pie Chart
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

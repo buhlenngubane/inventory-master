@@ -14,6 +14,7 @@ import dj_database_url
 import django_heroku
 import os
 from dotenv import load_dotenv
+from django.contrib import messages
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -57,9 +58,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'item',
     'store',
+    'django_nvd3',
     # 'django_google_fonts',
     'widget_tweaks',
-    #'stock_control.apps.StockControlConfig',
+    'djangobower',
     #'accounts.apps.AccountsConfig',
     # 'email_service.apps.EmailServiceConfig',
 ]
@@ -84,6 +86,7 @@ MIDDLEWARE = [
 STATICFILES_FINDERS = (
   'django.contrib.staticfiles.finders.FileSystemFinder',
   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+  'djangobower.finders.BowerFinder'
 )
 
 ROOT_URLCONF = 'inventory.urls'
@@ -133,6 +136,11 @@ TEMPLATES = [
 # LOGIN_URL = 'login'
 
 WSGI_APPLICATION = 'inventory.wsgi.application'
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'underscore',
+)
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

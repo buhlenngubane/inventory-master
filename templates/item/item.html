@@ -61,21 +61,38 @@
             </button>
         </a>
         <div>
-            <form method="POST" id="item-delete" action="{%url 'item:delete' pk=item.item_id%}" data-url="{%url 'item:delete' pk=item.item_id%}">
+            {% if item.item_site.name == "YARD" %}
+            <form method="POST" id="item-delete" action="{%url 'item:delete' pk=item.item_id%}">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-danger>
+                <button type="submit" class="btn btn-danger">
                     <span class="fa fa-eraser" aria-hidden="true"></span>
                     Remove item
                 </button>
             </form>
+            <div class="text-danger">
+                <i>
+                    Items removed cannot be recovered. 
+                    <strong>Proceed with caution!</strong>
+                </i>
+            </div>
+            {% endif %}
+            {% if item.item_site.name != "YARD" %}
+            <form method="POST" id="item-delete" action="{%url 'item:update' pk=item.item_id%}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                    <span class="fa fa-eraser" aria-hidden="true"></span>
+                    Move to Yard
+                </button>
+            </form>
+            <div class="text-warn">
+                <i>
+                    Items will be moved back to YARD. 
+                </i>
+            </div>
+            {% endif %}
 
         </div>
     </div>
-    <div class="text-danger">
-        <i>
-            Items removed cannot be recovered. 
-            <strong>Proceed with caution!</strong>
-        </i>
-    </div>
+    
 </div>
 {% endblock sidebar %}

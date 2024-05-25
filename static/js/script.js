@@ -26,23 +26,23 @@ $(function () {
         })
     })
     var $sidebar = $('.col-sm-4')
-    $('div').on('click', 'a.item', function (event) {
-        event.preventDefault()
-        var $targetUrl = $(this).attr('href')
-        $.ajax({
-            method: "GET",
-            url: $targetUrl,
-            beforeSend: function () {
-                $("#loader").show()
-            },
-            success: function () {
-                $sidebar.load($targetUrl + " div.details")
-            },
-            complete: function () {
-                $("#loader").hide();
-            },
-        })
-    })
+    // $('div').on('click', 'a.item', function (event) {
+    //     event.preventDefault()
+    //     var $targetUrl = $(this).attr('href')
+    //     $.ajax({
+    //         method: "GET",
+    //         url: $targetUrl,
+    //         beforeSend: function () {
+    //             $("#loader").show()
+    //         },
+    //         success: function () {
+    //             $sidebar.load($targetUrl + " div.details")
+    //         },
+    //         complete: function () {
+    //             $("#loader").hide();
+    //         },
+    //     })
+    // })
     var $form2 = $("#search-form")
     $form2.submit(function (event) {
         event.preventDefault()
@@ -68,10 +68,13 @@ $(function () {
     $('a.item').click(function () {
         var $targetUrl = $(this).attr('data-url')
         var $sidebar = $('.col-sm-4')
+        console.log("Javascript!!!!!")
+        console.log($targetUrl)
         $.ajax({
             method: "GET",
             url: $targetUrl,
             success: $sidebar.load($targetUrl + " div.details"),
+            error: function(xhr){console.log(xhr,"I am the cause!")}
         })
     });
 })
